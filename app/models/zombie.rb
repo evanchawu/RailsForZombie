@@ -2,4 +2,23 @@ class Zombie < ActiveRecord::Base
 	scope :rotting, -> { where(rotting: true)}
 	scope :young, ->{ where("age < 18")}
 	scope :recent, ->{ order("created_at desc").limit(3)}
+
+	#call back function不要寫在update method 裡面，因為這樣只有call 這個metho才會更新
+	#有可能在其他地方也在改zombie ，這樣就不會更新到
+	before_save :make_rotting
+
+	def make_rotting
+		self.rotting = true if age > 20 
+	end
+
+	# 此外有before的call back 不能回傳false，這樣物件永遠不能存/更新/刪除成功
+	# before_save :X
+	# def X
+	# 	false
+	# end
+
+	#  更多例子
+	#  after_create :send_welcome_email 使用者創帳號傳email給他們
+  #  before_save :encrypt_password 加密
+  #  before_destroy :set_deleted_flag 使用者刪除帳號但不想真的從資料庫刪除，把他的flag欄位設成false然後return false 就不會真的刪除
 end
