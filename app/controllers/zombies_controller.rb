@@ -4,7 +4,9 @@ class ZombiesController < ApplicationController
   # GET /zombies
   # GET /zombies.json
   def index
-    @zombies = Zombie.all
+    #@zombies = Zombie.all 
+    @zombies = Zombie.includes(:brain).all 
+    #這樣view執行 zombie.name.flavor 就不會有n+1 query issue
   end
 
   # GET /zombies/1
