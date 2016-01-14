@@ -21,4 +21,11 @@ class Zombie < ActiveRecord::Base
 	#  after_create :send_welcome_email 使用者創帳號傳email給他們
   #  before_save :encrypt_password 加密
   #  before_destroy :set_deleted_flag 使用者刪除帳號但不想真的從資料庫刪除，把他的flag欄位設成false然後return false 就不會真的刪除
+
+  has_one :brain, dependent: :destroy  #要加這個當Zombie刪掉時候，brain才會一起刪
+  # relationship其他option（看文件）
+	# dependent: :destroy will call destroy on associated objects
+	# foreign_key: :undead_id changes the associated key (i.e. zombie_id)
+	# primary_key: :zid changes the primary key (i.e. id)
+	# validate: true  when zombie validates brain will too
 end
