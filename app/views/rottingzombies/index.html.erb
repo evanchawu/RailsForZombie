@@ -1,2 +1,23 @@
 <h1>Rottingzombies#index</h1>
 <p>Find me in app/views/rottingzombies/index.html.erb</p>
+
+<h3>rotting zombies</h3>
+<ul>
+	<% @rotting_zombies.each do |rotting_zombie|   %>
+		<li><%= rotting_zombie.name %></li>
+	<% end %>
+</ul>
+
+<h3>young zombies</h3>
+<ul>
+	<% @young_zombies.each do |young_zombie|   %>
+		<li><%= young_zombie.name %></li>
+	<% end %>
+</ul>
+
+<h3>recent zombies</h3>
+<ul>
+	<% @recent_zombies.each do |recent_zombie|   %>
+		<li><%= recent_zombie.name %></li>
+	<% end %>
+</ul>
