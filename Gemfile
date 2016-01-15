@@ -43,3 +43,7 @@ group :development, :test do
   gem 'spring'
 end
 
+#創假資料
+gem 'rspec-rails'
+gem 'factory_girl_rails'
+
