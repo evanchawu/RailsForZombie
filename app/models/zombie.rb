@@ -36,4 +36,10 @@ class Zombie < ActiveRecord::Base
 	#console :
 	#a.roles << Role.find_by_title(:BOSS) 
 	#a.roles 
+
+	#一對多
+	has_many :tweets
+	#console :
+	#a = Zombie.first
+	#a.tweets.create status:'good' 比 Tweet.create status:'good',zombie:a 好更直觀
 end
