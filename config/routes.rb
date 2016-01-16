@@ -1,7 +1,30 @@
 Rails.application.routes.draw do
   get 'rottingzombies/index'
 
-  resources :zombies
+  # 原本
+  # resources :zombies 
+    resources :zombies do
+      resources :tweets
+    end
+
+    
+    
+  # <%= link_to "#{@zombie.name}’s Tweets", zombie_tweet_path(@zombie) %>
+  # <%= link_to 'New Tweet', new_zombie_tweet_path(@zombie) %>
+  # <%= link_to 'Edit', edit_zombie_tweet_path(@zombie, tweet) %>
+  # <%= link_to 'Show', zombie_tweet_path(@zombie, tweet) %>
+  # <%= link_to 'Show', [@zombie, tweet] %>
+  # <%= link_to 'Destroy', [@zombie, tweet], method: :delete %>
+    
+  # <%= link_to 'All Zombies', zombies_path %>
+  # <%= link_to 'New Zombie',  new_zombie_path %>
+  # <%= link_to 'Edit Zombie', edit_zombie_path(@zombie) %>
+  # <%= link_to 'Show Zombie', zombie_path(@zombie) %>
+  # <%= link_to 'Show Zombie', @zombie %>
+  # <%= link_to 'Destroy', @zombie, method: :delete %>
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

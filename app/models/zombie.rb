@@ -24,6 +24,7 @@ class Zombie < ActiveRecord::Base
 
   has_one :brain, dependent: :destroy  #要加這個當Zombie刪掉時候，brain才會一起刪
   # console: a = Zombie.first a.create_brain status:"..."
+  # 不能a.brain.create
   # relationship其他option（看文件）
 	# dependent: :destroy will call destroy on associated objects
 	# foreign_key: :undead_id changes the associated key (i.e. zombie_id)
@@ -38,7 +39,7 @@ class Zombie < ActiveRecord::Base
 	#a.roles 
 
 	#一對多
-	has_many :tweets
+	has_many :tweets, dependent: :destroy
 	#console :
 	#a = Zombie.first
 	#a.tweets.create status:'good' 比 Tweet.create status:'good',zombie:a 好更直觀

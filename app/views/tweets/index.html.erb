@@ -1,0 +1,26 @@
+
+
+<table>
+	<thead>
+		<tr>
+			<th>TWEET!</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @tweets.each do |tweet| %> 
+			<tr>
+			  <td><%= tweet.status %></td>
+				<td><%= link_to 'show', [@zombie,tweet] %></td>
+				<td><%= link_to 'edit', edit_zombie_tweet_path(@zombie,tweet)  %></td>	
+				<td><%= link_to 'delete', [@zombie,tweet], method: :delete  %></td>
+			</tr>
+		<% end %>	
+	</tbody>
+</table>
+
+<%= link_to 'new', new_zombie_tweet_path(@zombie)  %>
+
+
+
+ 
+ 
