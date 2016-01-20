@@ -47,3 +47,5 @@ end
 gem 'rspec-rails'
 gem 'factory_girl_rails'
 
+gem 'awesome_rails_console'
+
