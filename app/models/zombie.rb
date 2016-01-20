@@ -43,4 +43,14 @@ class Zombie < ActiveRecord::Base
 	#console :
 	#a = Zombie.first
 	#a.tweets.create status:'good' 比 Tweet.create status:'good',zombie:a 好更直觀
+
+	# after_save :decomp_change_notification, if: :decomp_changed? 執行有錯待問
+	#decomp_changed是activerecord預設的helper，會偵測attribute有沒有變
+	private
+	def decomp_change_notification 
+			ZombieMailer.decomp_change(self).deliver
+			#self就是傳zombie物件
+	end
+
+
 end
