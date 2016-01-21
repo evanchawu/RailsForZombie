@@ -7,6 +7,8 @@ class ZombiesController < ApplicationController
     #@zombies = Zombie.all 
     @zombies = Zombie.includes(:brain).all 
     #這樣view執行 zombie.name.flavor 就不會有n+1 query issue
+
+    render layout: 'only_for_zombie_index'
   end
 
   # GET /zombies/1

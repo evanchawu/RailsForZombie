@@ -1,0 +1,25 @@
+//= require_self 
+//= require just_for_test_2 
+//= require_tree ./test
+
+table {
+	 background-image: url(<%= asset_path('chill_valley.jpg') %>); 
+}
+/* 副檔名改成.erb 然後用asset_path 才能有cache的好處 ?*/
+
+
+/*
+/assets/XXX.css 
+/assets/XXX.js
+會找 {app, lib, vendor} /aseets/ { javascript, stylesheets, image} 全部
+
+<%= javascript_include_tag "custom" %>
+<script src="/assets/custom.js" type="text/javascript"></script>
+
+<%= stylesheet_link_tag "style" %>
+<link href="/assets/style.css" media="screen"
+                                rel="stylesheet" type="text/css" />
+
+<%= image_tag "rails.png" %>
+<img alt="Rails" src="/assets/rails.png" /> 要寫副檔名
+*/
