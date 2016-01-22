@@ -14,7 +14,32 @@ class ZombiesController < ApplicationController
   # GET /zombies/1
   # GET /zombies/1.json
   def show
+      @zombie = Zombie.find(params[:id])
+      respond_to do |format|
+
+        #custom render
+        format.html do #如果下面不成立就render 預設的show.html.erb
+          if @zombie.decomp == 'Dead (again)' 
+              render :dead_again
+          end   
+        end
+        format.json { render json: @zombie }
+      end
   end
+
+    # 只有需要同時render不同格式才要respond_to bloack 
+    # 如果只要render html
+    # if @zombie.decomp == 'Dead (again)'
+    #   render :dead_again
+    # end
+
+    # 如果只要render json
+    # render json: @zombie
+
+    # 如果要使用API就會回傳json，同時需要回傳HTTP status code
+    # render json: @zombie.errors, status: :unprocessable_entity
+    # render json: @zombie, status: :created, location: @zombie
+    # 當create一個resource，回傳該resource的URI，這是好的API practice
 
   # GET /zombies/new
   def new
