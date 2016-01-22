@@ -5,6 +5,30 @@ Rails.application.routes.draw do
   # resources :zombies 
     resources :zombies do
       resources :tweets
+
+      # 想要有zombie/5/decomp網址
+      member do   
+        get 'decomp'   
+      end
+      #等於get :decomp, on: :member
+      #也等於match 'zombies/:id/decomp' => 'Zombies#decomp', :as => :decomp_zombie 但上面比較好
+ 
+      # 客製化網址
+      # 有兩種:單一資源用member，多個資源用collection
+  
+      # 要得到某一zombie的decomp狀態
+      # get :decomp, on: :member      /zombies/:id/decomp   decomp_zombie_path(@zombie)
+      # 要更新某一zombie的decomp狀態
+      # put :decay, on: :member       /zombies/:id/decay    decay_zombie_path(@zombie)
+  
+      # 要得到年輕zombie的list
+      # get :fresh, on: :collection   /zombies/fresh    fresh_zombies_path
+      # 要對zombies做搜尋
+      # post :search, on: :collection /zombies/search   search_zombies_path
+      
+      # Examples:
+      # <%= link_to 'Fresh zombies', fresh_zombies_path %>
+      # <%= form_tag(search_zombies_path) do |f| %> 搜尋的表單
     end
 
     

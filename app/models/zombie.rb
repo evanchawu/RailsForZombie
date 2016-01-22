@@ -46,6 +46,16 @@ class Zombie < ActiveRecord::Base
 
 	# after_save :decomp_change_notification, if: :decomp_changed? 執行有錯待問
 	#decomp_changed是activerecord預設的helper，會偵測attribute有沒有變
+
+
+	# @zombie.to_json(include: :brain, except: [:created_at, :updated_at, :id])
+	# 想要每次用到to_json都用以上限定的寫法，
+	# 這樣如果用to_json沒有指定條件，就用這個default條件
+	def as_json(options = nil)
+		super(options ||
+					{include: :brain, except: [:created_at, :updated_at, :id]})
+ 	end
+
 	private
 	def decomp_change_notification 
 			ZombieMailer.decomp_change(self).deliver

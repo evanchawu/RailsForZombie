@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115150335) do
+ActiveRecord::Schema.define(version: 20160122081605) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "zombie_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160115150335) do
     t.string   "email"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "decomp"
   end
 
 end

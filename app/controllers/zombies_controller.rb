@@ -1,6 +1,22 @@
 class ZombiesController < ApplicationController
   before_action :set_zombie, only: [:show, :edit, :update, :destroy]
 
+  def decomp
+    @zombie = Zombie.find(params[:id])
+    if @zombie.decomp == 'Dead (again)'
+      render json: @zombie.to_json(only: :decomp),
+             status: :unprocessable_entity
+    else
+      render json: @zombie.to_json(only: :decomp)
+    end
+  end
+# 過濾Json方法
+# @zombie.to_json(only: :name)
+# @zombie.to_json(only: [:name, :age])
+# @zombie.to_json(except: [:created_at, :updated_at, :id, :email, :bio])
+# @zombie.to_json(include: :brain, except: [:created_at, :updated_at, :id])
+
+
   # GET /zombies
   # GET /zombies.json
   def index
